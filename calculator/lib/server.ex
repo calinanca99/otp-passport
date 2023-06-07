@@ -34,6 +34,10 @@ defmodule Calculator.Server do
     {:noreply, 0}
   end
 
+  def handle_info(:inc, state) do
+    {:noreply, Core.inc(state)}
+  end
+
   def handle_call(:state, _from, state) do
     {:reply, state, state}
   end
@@ -44,6 +48,7 @@ defmodule Calculator.Server do
   def divide(pid, number), do: GenServer.cast(pid, {:divide, number})
   def negate(pid), do: GenServer.cast(pid, :negate)
   def clear(pid), do: GenServer.cast(pid, :clear)
+  def inc(pid), do: send(pid, :inc)
 
   def state(pid) do
     GenServer.call(pid, :state)
