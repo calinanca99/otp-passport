@@ -18,6 +18,10 @@ defmodule CoreTest do
     assert divide(12, 3) == 4
   end
 
+  test "negate" do
+    assert negate(7) == -7
+  end
+
   test "fold" do
     assert fold([1, 2, 3, 4], 0, &add/2) == 10
   end
